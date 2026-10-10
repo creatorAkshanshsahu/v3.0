@@ -114,11 +114,11 @@ class MainActivity : AppCompatActivity() {
     private var guideCat = ""; private var guideChannels = listOf<Channel>(); private var categoryChannels = listOf<Channel>()
 
     // servers
-    private lateinit var serverPanel: View; private lateinit var serverList: RecyclerView
+    private lateinit var serverPanel: ViewGroup; private lateinit var serverList: RecyclerView
     private var serverShown = false; private var serverRows = listOf<String>()
 
     // search
-    private lateinit var searchView: View; private lateinit var searchQuery: TextView; private lateinit var kbd: LinearLayout
+    private lateinit var searchView: ViewGroup; private lateinit var searchQuery: TextView; private lateinit var kbd: LinearLayout
     private lateinit var searchHeader: TextView; private lateinit var searchList: RecyclerView
     private var searchShown = false; private val searchQ = StringBuilder(); private var searchResults = listOf<Channel>()
     private var kbAccent = Accent.SIGNAL
@@ -1074,7 +1074,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     v.setOnClickListener {
                         shown = row.tiles.filterIsInstance<Tile.Ch>().map { it.c }; shownCat = row.title
-                        retries = 0; play(shown.indexOfFirst { it.c.key == t.c.key })
+                        retries = 0; play(shown.indexOfFirst { it.key == t.c.key })
                     }
                     v.setOnLongClickListener { toggleFav(t.c); true }
                 }
